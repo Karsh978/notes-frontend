@@ -1,16 +1,48 @@
-# React + Vite
+# Notes App — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React frontend for the [Notes API](#) *(link your backend repo here)*, a Spring Boot backend. Built with Vite, styled with Tailwind CSS.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React (Vite)
+- Axios — API calls
+- Tailwind CSS — styling
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- View all notes in a responsive card grid
+- Add a new note via a form
+- Delete a note
+- Connects to a Spring Boot REST API running on `localhost:8080`
 
-## Expanding the Oxlint configuration
+## Running Locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Make sure the [backend](#) is running first on `http://localhost:8080`.
+
+```bash
+npm install
+npm run dev
+```
+
+App runs on `http://localhost:5173`.
+
+## Project Structure
+
+```
+src/
+├── api.js       → All API calls (Axios) in one place
+├── App.jsx        → Main component — notes list + create/delete form
+└── index.css      → Tailwind import
+```
+
+## Backend
+
+Pairs with a Spring Boot REST API: [notes-api-springboot](#) *(link your backend repo here)*
+
+## What I learned building this
+
+This was built after learning the same patterns in MERN — the main differences were:
+
+- The API base URL points to a Spring Boot server (`:8080`) instead of Express (`:5000` typically)
+- CORS had to be explicitly enabled on the Spring Boot side (`@CrossOrigin`) for the frontend to talk to it, similar to the `cors` npm package in Express
+- Otherwise, `useState`, `useEffect`, and Axios calls work exactly the same regardless of what backend framework is on the other end — which is really the point of decoupling frontend and backend.
